@@ -85,7 +85,7 @@ require_once __DIR__ . "/src/helper.php"
     >Продолжить</button>
 </form>
 
-<p>У меня уже есть <a href="/login.html">аккаунт</a></p>
+<p>У меня уже есть <a href="/login-and-register-new-layout/index.php">аккаунт</a></p>
 
 <script src="assets/app.js"></script>
 </body>

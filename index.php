@@ -43,7 +43,7 @@
     >Продолжить</button>
 </form>
 
-<p>У меня еще нет <a href="/register.html">аккаунта</a></p>
+<p>У меня еще нет <a href="/login-and-register-new-layout/register.php">аккаунта</a></p>
 
 <script src="assets/app.js"></script>
 </body>

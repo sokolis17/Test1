@@ -15,7 +15,7 @@
         alt="{{ name }}"
     >
     <h1>Привет, {{ name }}!</h1>
-    <a href="#" role="button">Выйти из аккаунта</a>
+    <a href="/login-and-register-new-layout/index.php" role="button">Выйти из аккаунта</a>
 </div>
 
 <script src="assets/app.js"></script>
