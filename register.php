@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form class="card">
+<form class="card" action = "src/action/register.php" method="post" enctype="multipart/form-data">
     <h2>Регистрация</h2>
 
     <label for="name">
