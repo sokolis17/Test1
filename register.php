@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . "/src/helper.php" 
+?>
+
 <!DOCTYPE html>
 <html lang="ru" data-theme="light">
 <head>
@@ -18,9 +22,9 @@
             id="name"
             name="name"
             placeholder="Иванов Иван"
-            aria-invalid="true"
-            required
+            <?php mayBeHasError('name'); ?>
         >
+        <small><?php getErrorMessage('name')?></small>
     </label>
 
     <label for="email">
@@ -30,8 +34,7 @@
             id="email"
             name="email"
             placeholder="ivan@areaweb.su"
-            required
-        >
+            >
     </label>
 
     <label for="avatar">Изображение профиля
@@ -50,7 +53,6 @@
                 id="password"
                 name="password"
                 placeholder="******"
-                required
             >
         </label>
 
@@ -61,7 +63,6 @@
                 id="password_confirmation"
                 name="password_confirmation"
                 placeholder="******"
-                required
             >
         </label>
     </div>
