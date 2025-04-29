@@ -11,7 +11,7 @@
 <div class="card home">
     <img
         class="avatar"
-        src="https://img.gazeta.ru/files3/516/15017516/upload-GettyImages-1166522079-pic_32ratio_900x600-900x600-58937.jpg"
+        src="https://i.pinimg.com/736x/c4/4e/4b/c44e4b8cf478b81558fbbeec36554d24.jpg"
         alt="{{ name }}"
     >
     <h1>Привет, {{ name }}!</h1>

@@ -15,7 +15,19 @@ $password_confirmation = $_POST['password_confirmation'];
 $_SESSION['validation'] = [];
 
 if (empty($name)){
-    $_SESSION['validation']['name'] = 'Неверное имя';
+    addValidationError('name','Неверное имя');
+}
+
+if (!filter_var($email , FILTER_VALIDATE_EMAIL)){
+    addValidationError('email','Некорректный email');
+}
+
+if (empty($password)){
+    addValidationError('password','Введите пароль');
+}
+
+if ($password === $password_confirmation){
+    addValidationError('password_confirmation','Пароил не совпададют');
 }
 
 if (!empty($_SESSION['validation'])){
