@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/src/helper.php" 
+require_once __DIR__ . "/src/helper.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +22,11 @@ require_once __DIR__ . "/src/helper.php"
             id="name"
             name="name"
             placeholder="Иванов Иван"
-            <?php mayBeHasError('name'); ?>
+            <?php validationErrorAtrr('name'); ?>
         >
-        <small><?php getErrorMessage('name')?></small>
+        <?php if(hasValidationError('name')):?>
+            <small><?php validationErrorMessage('name')?></small>
+        <?php endif; ?>
     </label>
 
     <label for="email">
@@ -34,7 +36,11 @@ require_once __DIR__ . "/src/helper.php"
             id="email"
             name="email"
             placeholder="ivan@areaweb.su"
-            >
+            <?php validationErrorAtrr('email'); ?>
+        >
+        <?php if(hasValidationError('email')):?>
+            <small><?php validationErrorMessage('email')?></small>
+        <?php endif; ?>
     </label>
 
     <label for="avatar">Изображение профиля
@@ -53,7 +59,11 @@ require_once __DIR__ . "/src/helper.php"
                 id="password"
                 name="password"
                 placeholder="******"
+                <?php validationErrorAtrr('password'); ?>
             >
+            <?php if(hasValidationError('password')):?>
+                <small><?php validationErrorMessage('password')?></small>
+            <?php endif; ?>
         </label>
 
         <label for="password_confirmation">
@@ -63,7 +73,11 @@ require_once __DIR__ . "/src/helper.php"
                 id="password_confirmation"
                 name="password_confirmation"
                 placeholder="******"
+                <?php validationErrorAtrr('password_confirmation'); ?>
             >
+            <?php if(hasValidationError('password_confirmation')):?>
+                <small><?php validationErrorMessage('password_confirmation')?></small>
+            <?php endif; ?>
         </label>
     </div>
 
@@ -84,6 +98,8 @@ require_once __DIR__ . "/src/helper.php"
         disabled
     >Продолжить</button>
 </form>
+
+<?php clearValidation(); ?>
 
 <p>У меня уже есть <a href="/login-and-register-new-layout/index.php">аккаунт</a></p>
 
