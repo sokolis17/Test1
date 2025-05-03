@@ -23,6 +23,7 @@ require_once __DIR__ . "/src/helper.php";
             id="name"
             name="name"
             placeholder="Иванов Иван"
+            value="<?php echo old('name'); ?>"
             <?php validationErrorAtrr('name'); ?>
         >
         <?php if(hasValidationError('name')):?>
@@ -37,6 +38,7 @@ require_once __DIR__ . "/src/helper.php";
             id="email"
             name="email"
             placeholder="ivan@areaweb.su"
+            value="<?php echo old('email'); ?>"
             <?php validationErrorAtrr('email'); ?>
         >
         <?php if(hasValidationError('email')):?>
@@ -71,7 +73,7 @@ require_once __DIR__ . "/src/helper.php";
         <label for="password_confirmation">
             Подтверждение
             <input
-                type="password"
+                type="password" 
                 id="password_confirmation"
                 name="password_confirmation"
                 placeholder="******"

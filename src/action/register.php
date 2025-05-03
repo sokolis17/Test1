@@ -6,10 +6,13 @@ print_r($_POST);
 
 //DATA
 $name = $_POST['name'];
-$email = $_POST['name'];
+$email = $_POST['email'];
 $password = $_POST['password'];
 $password_confirmation = $_POST['password_confirmation'];
 
+//Блок для старах значений ввода
+addOldValue('name',$name);
+addOldValue('email',$email);
 
 //VALIDATION
 $_SESSION['validation'] = [];
