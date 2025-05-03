@@ -14,22 +14,27 @@ $password_confirmation = $_POST['password_confirmation'];
 //VALIDATION
 $_SESSION['validation'] = [];
 
+//name
 if (empty($name)){
     addValidationError('name','Неверное имя');
 }
 
-if (!filter_var($email , FILTER_VALIDATE_EMAIL)){
-    addValidationError('email','Некорректный email');
+//email
+if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+    addValidationError('email','Почта указана неверно');
+}
+//password
+if(empty($password)){
+    addValidationError('password','Заполните пароль');
+}
+//passwordconf
+if(!($password === $password_confirmation)){
+    addValidationError('password_confirmation','Пароли должны совпадать');
 }
 
-if (empty($password)){
-    addValidationError('password','Введите пароль');
-}
 
-if ($password === $password_confirmation){
-    addValidationError('password_confirmation','Пароил не совпададют');
-}
 
+//Редирект
 if (!empty($_SESSION['validation'])){
     redirect("/login-and-register-new-layout/register.php");
 }

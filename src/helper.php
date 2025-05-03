@@ -5,23 +5,21 @@ function redirect(string $path){
     die();
 }
 
-function clearValidation(){
-    $_SESSION['validation'] = [];
-}
-
-function addValidationError($fieldName,string $message){
-    $_SESSION['validation'][$fieldName] = $message;
-}
 function validationErrorAtrr(string $fieldName){
     echo isset($_SESSION['validation'][$fieldName]) ? 'aria-invalid="true"' : '';
 }
 
-function validationErrorMessage(string $fieldName){
-    if (isset($_SESSION['validation'][$fieldName])) {
-                echo $_SESSION['validation'][$fieldName];
-                unset($_SESSION['validation'][$fieldName]); }
+function addValidationError(string $fieldName,string $message){
+    echo $_SESSION['validation'][$fieldName] = $message;
 }
 
-function hasValidatorError(string $fieldName): bool{
+function validationErrorMessage(string $fieldName){
+    echo $_SESSION['validation'][$fieldName]?? '';
+}
+
+function clearValidation(){
+    $_SESSION['validation'] = [];
+}
+function hasValidationError(string $fieldName): bool{
     return isset($_SESSION['validation'][$fieldName]);
 }
