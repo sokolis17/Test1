@@ -1,14 +1,16 @@
 <?php
 require_once __DIR__ . '/../helper.php';
 
-print_r($_POST);
+
 
 
 //DATA
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$password_confirmation = $_POST['password_confirmation'];
+$avatrPath = null;
+$name = $_POST['name'] ?? null;
+$email = $_POST['email'] ?? null;
+$password = $_POST['password'] ?? null;
+$password_confirmation = $_POST['password_confirmation'] ?? null;
+$avatar = $_FILES['avatar'] ?? null;
 
 //Блок для старах значений ввода
 addOldValue('name',$name);
@@ -35,9 +37,24 @@ if(!($password === $password_confirmation)){
     addValidationError('password_confirmation','Пароли должны совпадать');
 }
 
+if(!empty($avatar)){
+    $types = ['image/jpeg','image/png'];
 
+    if(!in_array($avatar['type'], $types)){
+        addValidationError('avatar','Изображение имеет неверный тип');
+    }
+}
+    if(($avatar['size'] / 1000000 ) >= 1){
+        addValidationError('avatar','Изображение должно быть меньше 1мб');
+    }
 
 //Редирект
-if (!empty($_SESSION['validation'])){
-    redirect("/login-and-register-new-layout/register.php");
+if (!empty($_SESSION['validation'])){//если список с ошибками валидцаии не пустой,то производим ридерект обратно в форму
+    //redirect("/login-and-register-new-layout/register.php");
 }
+
+if(!empty($avatar)){
+    $avatrPath = uploadFile($avatar,'avatar');
+}
+
+var_dump($avatrPath);

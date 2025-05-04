@@ -12,7 +12,9 @@ function validationErrorAtrr(string $fieldName){//для отображения 
 }
 
 function validationErrorMessage(string $fieldName){//тут формируется сообщение об ошибке в для нужного поля
-    echo $_SESSION['validation'][$fieldName]?? '';
+    $message = $_SESSION['validation'][$fieldName]?? '';
+    unset($_SESSION['validation'][$fieldName]);
+    echo $message;
 }
 function addValidationError(string $fieldName,string $message){//для вывода в форму нужного сообщения об ощибке
     echo $_SESSION['validation'][$fieldName] = $message;
@@ -30,9 +32,23 @@ function old(string $key){
     unset($_SESSION['old'][$key]);
     return $value; 
 }
-//Блок с отчикской
-function clearValidation(){//Очистка сессии валидации
-    $_SESSION['validation'] = [];
+
+function uploadFile(array $file,string $prefix = ''){
+    $uploadPath =__DIR__ . '/../uploads';
+
+    if(!is_dir("$uploadPath")){
+        mkdir($uploadPath,0777,true);
+    }
+    $ext = pathinfo($file['name'],PATHINFO_EXTENSION);
+    $filename = $prefix."_" . time(). ".$ext";
+
+    
+
+    if(!move_uploaded_file($file['tmp_name'],"uploadPath/$filename")){
+        die('Ошибка при загрузки файла на сервере');
+    }
+
+    return "uploadPath/$filename";
 }
 
 

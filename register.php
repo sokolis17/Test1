@@ -51,7 +51,11 @@ require_once __DIR__ . "/src/helper.php";
             type="file"
             id="avatar"
             name="avatar"
+            <?php validationErrorAtrr('avatar'); ?>
         >
+        <?php if(hasValidationError('avatar')):?>
+            <small><?php validationErrorMessage('avatar')?></small>
+        <?php endif; ?>
     </label>
 
     <div class="grid">
@@ -104,7 +108,7 @@ require_once __DIR__ . "/src/helper.php";
     >Продолжить</button>
 </form>
 
-<?php clearValidation(); ?>
+
 
 <p>У меня уже есть <a href="/login-and-register-new-layout/index.php">аккаунт</a></p>
 
