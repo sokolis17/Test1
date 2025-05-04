@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/config.php';
+
 
 function redirect(string $path){//функция для перенпаправления
     header("Location: $path");
@@ -44,11 +46,20 @@ function uploadFile(array $file,string $prefix = ''){
 
     
 
-    if(!move_uploaded_file($file['tmp_name'],"uploadPath/$filename")){
+    if(!move_uploaded_file($file['tmp_name'],"$uploadPath/$filename")){
         die('Ошибка при загрузки файла на сервере');
     }
 
-    return "uploadPath/$filename";
+    return "uploads/$filename";
 }
+
+function getPDO():PDO{
+    try{
+        return new \PDO('mysql:host=' .DB_HOST. ';dbname='. DB_NAME ,DB_USERNAME,DB_PASSWORD);
+    } catch(\PDOException $e){
+        die($e->getMessage());
+    }
+}
+
 
 

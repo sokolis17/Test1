@@ -50,11 +50,28 @@ if(!empty($avatar)){
 
 //Редирект
 if (!empty($_SESSION['validation'])){//если список с ошибками валидцаии не пустой,то производим ридерект обратно в форму
-    //redirect("/login-and-register-new-layout/register.php");
+    redirect("/login-and-register-new-layout/register.php");
 }
 
 if(!empty($avatar)){
     $avatrPath = uploadFile($avatar,'avatar');
 }
 
-var_dump($avatrPath);
+$pdo = getPDO();
+
+$query = "INSERT INTO users (name,email,avatar,password) VALUES (:name,:email,:avatar,:password)";
+$params = [
+    'name' => $name, 
+    'email' => $email,
+    'avatar' => $avatrPath,
+    'password' => password_hash($password,PASSWORD_DEFAULT)
+];
+$stmt = $pdo->prepare($query);
+
+try{
+    $stmt->execute($params);
+}catch(\Exception $e){
+    die("Conection error: {$e->getMessage()}");
+}
+
+redirect('/login-and-register-new-layout/index.php');
