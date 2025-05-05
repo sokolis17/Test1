@@ -82,3 +82,36 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE `email` = :email");
 $stmt->execute(['email' => $email]);
 return $stmt ->fetch(\PDO::FETCH_ASSOC);
 }
+
+function currentUser(){
+    $pdo = getPDO();
+
+    if(isset($user)){
+        return false;
+    }
+
+    $userID = $_SESSION['user']['id']?? null;
+
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE `id` = :id");
+    $stmt->execute(['id' => $userID]);
+    return $stmt ->fetch(\PDO::FETCH_ASSOC);
+
+}
+
+function logout(){
+    unset($_SESSION['user']['id']);
+    redirect('/login-and-register-new-layout/index.php');
+}
+
+function checkAuth(){
+    if(!isset($_SESSION['user']['id'])){
+        redirect('/login-and-register-new-layout/index.php');
+    }
+}
+
+function checkGuest(){
+    if(isset($_SESSION['user']['id'])){
+        redirect('/login-and-register-new-layout/home.php');
+    }
+}
+

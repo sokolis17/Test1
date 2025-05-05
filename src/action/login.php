@@ -24,6 +24,7 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
 $user = findUser($email);
 
 if(!$user){
+    addOldValue('email',$email);
     setMessage('error',"Пользлватель $email не найден");
     redirect('/login-and-register-new-layout/index.php');
 }

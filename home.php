@@ -1,3 +1,11 @@
+<?php 
+require_once __DIR__ . '/src/helper.php';
+
+checkAuth();
+
+$user = currentUser();
+?>
+
 <!DOCTYPE html>
 <html lang="ru" data-theme="light">
 <head>
@@ -11,11 +19,13 @@
 <div class="card home">
     <img
         class="avatar"
-        src="https://i.pinimg.com/736x/c4/4e/4b/c44e4b8cf478b81558fbbeec36554d24.jpg"
-        alt="{{ name }}"
+        src="<?php echo $user['avatar'] ?>"
+        alt="<?php echo $user['name'] ?>"
     >
-    <h1>Привет, {{ name }}!</h1>
-    <a href="/login-and-register-new-layout/index.php" role="button">Выйти из аккаунта</a>
+    <h1>Привет, <?php echo $user['name'] ?>!</h1>
+    <form action="src/action/logout.php" method="post">
+        <button>Выйти из аккаунта</button>
+    </form>
 </div>
 
 <script src="assets/app.js"></script>

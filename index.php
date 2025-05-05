@@ -1,5 +1,7 @@
 <?php 
 require_once __DIR__ . '/src/helper.php';
+
+checkGuest();
 ?>
 
 <!DOCTYPE html>
@@ -18,9 +20,6 @@ require_once __DIR__ . '/src/helper.php';
     <?php if(hasMessage('error')):?>
     <div class="notice error"><?php echo getMessage('error');?></div>
     <?php endif;?>
-
-
-    <div class="notice success">Какое-то сообщение</div>
 
     <label for="email">
         Имя
