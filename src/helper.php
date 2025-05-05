@@ -61,5 +61,24 @@ function getPDO():PDO{
     }
 }
 
+function setMessage(string $key,string $message){
+    $_SESSION['message'][$key] = $message;
+}
 
+function hasMessage(string $key,):bool{
+    return isset($_SESSION['message'][$key]);
+}
 
+function getMessage(string $key){
+    $value = $_SESSION['message'][$key] ?? '';
+    unset($_SESSION['message'][$key]); 
+    return $value;
+}
+
+function findUser(string $email):array|bool{
+    $pdo = getPDO();
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE `email` = :email");
+$stmt->execute(['email' => $email]);
+return $stmt ->fetch(\PDO::FETCH_ASSOC);
+}

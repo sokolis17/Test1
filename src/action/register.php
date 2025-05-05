@@ -12,10 +12,6 @@ $password = $_POST['password'] ?? null;
 $password_confirmation = $_POST['password_confirmation'] ?? null;
 $avatar = $_FILES['avatar'] ?? null;
 
-//Блок для старах значений ввода
-addOldValue('name',$name);
-addOldValue('email',$email);
-
 //VALIDATION
 $_SESSION['validation'] = [];
 
@@ -50,6 +46,8 @@ if(!empty($avatar)){
 
 //Редирект
 if (!empty($_SESSION['validation'])){//если список с ошибками валидцаии не пустой,то производим ридерект обратно в форму
+    addOldValue('name',$name);
+    addOldValue('email',$email);
     redirect("/login-and-register-new-layout/register.php");
 }
 
